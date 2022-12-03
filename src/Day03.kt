@@ -29,7 +29,7 @@ fun main() {
             .sumOf { group ->
                 group
                     .map { sack -> sack.toSet() }
-                    .reduce { commonItems, nextSack -> commonItems.intersect(nextSack) }
+                    .reduce { commonItems, nextSack -> commonItems intersect nextSack }
                     .first()
                     .priority
             }
