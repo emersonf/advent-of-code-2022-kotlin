@@ -11,16 +11,16 @@ fun main() {
         return Pair(first.toIntRange(), second.toIntRange())
     }
 
-    fun IntRange.contains(other: IntRange): Boolean =
-        this.first <= other.first && this.last >= other.last
+    fun IntRange.containedIn(other: IntRange): Boolean =
+        first in other && last in other
 
-    fun IntRange.containsOrIsContainedBy(other: IntRange): Boolean =
-        this.contains(other) || other.contains(this)
+    fun IntRange.containsOrIsContainedIn(other: IntRange): Boolean =
+        this.containedIn(other) || other.containedIn(this)
 
     fun part1(input: List<String>): Int =
         input
             .map { line -> line.asRangePair() }
-            .count { pair -> pair.first.containsOrIsContainedBy(pair.second) }
+            .count { pair -> pair.first.containsOrIsContainedIn(pair.second) }
 
     fun IntRange.overlaps(other: IntRange): Boolean =
         first in other || last in other || other.first in this || other.last in this
